@@ -55,11 +55,11 @@ if [ "${USE_SSM_FOR_SECRETS}" == true ]; then
     AUTHN_CLIENT_SECRET=$(aws ssm get-parameters --names github-authn-client-secret --with-decryption --query Parameters[0].Value --output text)
     AUTHZ_ACCESS_TOKEN=$(aws ssm get-parameters --names github-authz-token --with-decryption --query Parameters[0].Value --output text)
     GITHUB_ORG=$(aws ssm get-parameters --names github-org --with-decryption --query Parameters[0].Value --output text)
-    PREFIX_LIST=$(aws ssm get-parameters --names sg-prefix-list --with-decryption --query Parameters[0].Value --output text)
-    if [ "${AUTHN_CLIENT_ID}" = "None" ] || [ "${AUTHN_CLIENT_SECRET}" = "None" ] || [ "${AUTHZ_ACCESS_TOKEN}" = "None" ] || [ "${PREFIX_LIST}" = "None" ]; then
-        echo "One of github-authn-client-id, github-authn-client-secret, github-authz-token, or sg-prefix-list is not in SSM"
-        exit 1
-    fi
+    ## PREFIX_LIST=$(aws ssm get-parameters --names sg-prefix-list --with-decryption --query Parameters[0].Value --output text)
+    ## if [ "${AUTHN_CLIENT_ID}" = "None" ] || [ "${AUTHN_CLIENT_SECRET}" = "None" ] || [ "${AUTHZ_ACCESS_TOKEN}" = "None" ] || [ "${PREFIX_LIST}" = "None" ]; then
+       ## echo "One of github-authn-client-id, github-authn-client-secret, github-authz-token, or sg-prefix-list is not in SSM"
+       ## exit 1
+    ##fi
 fi
 
 BAKING_VPC=$(aws ec2 describe-vpcs --filters Name=cidr,Values=172.31.0.0/16 --query Vpcs[0].VpcId --output text)
