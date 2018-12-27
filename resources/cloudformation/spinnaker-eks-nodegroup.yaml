@@ -85,7 +85,7 @@ Parameters:
   NodeAutoScalingGroupMaxSize:
     Type: Number
     Description: Maximum size of Node Group ASG.
-    Default: 3
+    Default: 2
 
   NodeVolumeSize:
     Type: Number
