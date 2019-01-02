@@ -143,11 +143,11 @@ hal --color false config security ui edit --override-base-url http://${DECK_ADDR
 hal --color false config security api edit --override-base-url http://${GATE_ADDRESS}
 
 if [ ! -z "${AUTHN_CLIENT_ID}" ] && [ ! -z "${AUTHN_CLIENT_SECRET}" ] && [ ! -z "${AUTHZ_ACCESS_TOKEN}" ] && [ ! -z "${GITHUB_ORG}" ]; then
-    hal --color false config security authn oauth2 edit \
-      --client-id ${AUTHN_CLIENT_ID} \
-      --client-secret ${AUTHN_CLIENT_SECRET} \
-      --provider github
-    hal --color false config security authn oauth2 enable
+    #hal --color false config security authn oauth2 edit \
+     # --client-id ${AUTHN_CLIENT_ID} \
+      #--client-secret ${AUTHN_CLIENT_SECRET} \
+      #--provider github
+    #hal --color false config security authn oauth2 enable
     ## Once this https://github.com/spinnaker/spinnaker/issues/3154 is fixed we can use just run the commands
     sed -ie "s|roleProviderType:\ GITHUB|roleProviderType:\ GITHUB\n          baseUrl: https://api.github.com\n          accessToken: ${AUTHZ_ACCESS_TOKEN}\n          organization: ${GITHUB_ORG}|g" /home/spinnaker/.hal/config
     hal --color false config security authz enable
