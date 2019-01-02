@@ -149,8 +149,8 @@ if [ ! -z "${AUTHN_CLIENT_ID}" ] && [ ! -z "${AUTHN_CLIENT_SECRET}" ] && [ ! -z 
       --provider github
     hal --color false config security authn oauth2 enable
     ## Once this https://github.com/spinnaker/spinnaker/issues/3154 is fixed we can use just run the commands
-#    sed -ie "s|roleProviderType:\ GITHUB|roleProviderType:\ GITHUB\n          baseUrl: https://api.github.com\n          accessToken: ${AUTHZ_ACCESS_TOKEN}\n          organization: ${GITHUB_ORG}|g" /home/spinnaker/.hal/config
-#    hal --color false config security authz enable
+    sed -ie "s|roleProviderType:\ GITHUB|roleProviderType:\ GITHUB\n          baseUrl: https://api.github.com\n          accessToken: ${AUTHZ_ACCESS_TOKEN}\n          organization: ${GITHUB_ORG}|g" /home/spinnaker/.hal/config
+    hal --color false config security authz enable
 fi
 
 hal --color false config deploy edit --type distributed --account-name my-k8s-account
